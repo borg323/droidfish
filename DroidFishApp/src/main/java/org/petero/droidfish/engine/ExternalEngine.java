@@ -31,6 +31,7 @@ import org.petero.droidfish.DroidFishApp;
 import org.petero.droidfish.EngineOptions;
 import org.petero.droidfish.R;
 import android.content.Context;
+import android.util.Log;
 
 /** Engine running as a process started from an external resource. */
 public class ExternalEngine extends UCIEngineBase {
@@ -74,7 +75,10 @@ public class ExternalEngine extends UCIEngineBase {
             String exePath = copyFile(engineFileName, exeDir);
             chmod(exePath);
             cleanUpExeDir(exeDir, exePath);
+            copyLibrariesTo(exeDir);
             ProcessBuilder pb = new ProcessBuilder(exePath);
+            pb.environment().put("LD_LIBRARY_PATH", exeDir.getAbsolutePath());
+
             synchronized (EngineUtil.nativeLock) {
                 engineProc = pb.start();
             }
@@ -138,18 +142,20 @@ public class ExternalEngine extends UCIEngineBase {
 
             // Start a thread to ignore stderr
             stdErrThread = new Thread(() -> {
-                byte[] buffer = new byte[128];
-                while (true) {
-                    Process ep = engineProc;
-                    if ((ep == null) || Thread.currentThread().isInterrupted())
-                        return;
-                    try {
-                        int len = ep.getErrorStream().read(buffer, 0, 1);
-                        if (len < 0)
-                            break;
-                    } catch (IOException e) {
-                        return;
+                Process ep = engineProc;
+                if (ep == null)
+                    return;
+                InputStream is = ep.getErrorStream();
+                InputStreamReader isr = new InputStreamReader(is);
+                BufferedReader br = new BufferedReader(isr, 8192);
+                String line;
+                try {
+                    while ((line = br.readLine()) != null) {
+                        Log.d("!!!", line);
+                        if (Thread.currentThread().isInterrupted())
+                            return;
                     }
+                } catch (IOException ignore) {
                 }
             });
             stdErrThread.start();
@@ -295,7 +301,7 @@ public class ExternalEngine extends UCIEngineBase {
     }
 
     protected String copyFile(File from, File exeDir) throws IOException {
-        File to = new File(exeDir, "engine.exe");
+        File to = new File(exeDir, from.getName());
         new File(internalSFPath()).delete();
         if (to.exists() && (from.length() == to.length()) && (from.lastModified() == to.lastModified()))
             return to.getAbsolutePath();
@@ -318,6 +324,21 @@ public class ExternalEngine extends UCIEngineBase {
             to.setLastModified(from.lastModified());
         }
         return to.getAbsolutePath();
+    }
+
+    /** Copy library files from /lib to exeDir */
+    private void copyLibrariesTo(File exeDir) {
+        try {
+            File soDir = new File(new File(android.os.Environment.getExternalStorageDirectory(), "DroidFish"), "lib");
+            File[] files = soDir.listFiles();
+            if (files == null)
+                return;
+            for (File f : files) {
+                copyFile(f, exeDir);
+            }
+        }
+        catch (IOException ignore) {
+        }
     }
 
     private void chmod(String exePath) throws IOException {
