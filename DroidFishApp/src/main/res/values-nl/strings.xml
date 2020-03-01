@@ -802,4 +802,5 @@ Als uw telefoon op batterij werkt is het aan te raden om deze instellingen te wi
         <item>German Speech</item>
         <item>Spanish Speech</item>
     </string-array>
+    <string name="leela_engine">Leela Chess Zero</string>
 </resources>

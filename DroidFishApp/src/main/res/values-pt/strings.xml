@@ -802,4 +802,5 @@ Se você está usando somente a bateria, recomenda-se que você mude as configur
         <item>Voz em alemão</item>
         <item>Voz em espanhol</item>
     </string-array>
+    <string name="leela_engine">Leela Chess Zero</string>
 </resources>

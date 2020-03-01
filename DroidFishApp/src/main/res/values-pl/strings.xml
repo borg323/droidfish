@@ -802,4 +802,5 @@ Jeśli pracujesz na baterii, zalecana jest zmiana ustawień, w celu oszczędzani
         <item>Mowa niemiecka</item>
         <item>Mowa hiszpańska</item>
     </string-array>
+    <string name="leela_engine">Leela Chess Zero</string>
 </resources>

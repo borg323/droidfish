@@ -81,6 +81,25 @@ task copyToAssets(type: Copy, dependsOn: 'externalNativeBuildRelease') {
     }
     into 'src/main/assets'
 }
+
+// Download Url to File
+def download(address, directory, file) {
+    def dest_dir = new File(directory)
+    if (!dest_dir.exists())
+        dest_dir.mkdirs()
+    new File(dest_dir, file).withOutputStream {
+        os -> os << new URL(address).openStream()
+    }
+}
+
+// Copy Leela binaries to assets directory
+task copyLeelaAssets() {
+    def assetsPath = 'DroidFishApp/src/main/assets/'
+    download('file:///home/leandro/projects/chess/leela/android-bin/0.25borg/arm64-v8a/lc0', assetsPath + 'arm64-v8a', 'lc0')
+    download('file:///home/leandro/projects/chess/leela/android-bin/0.25borg/armeabi-v7a/lc0', assetsPath + 'armeabi-v7a', 'lc0')
+    download('file:///home/leandro/projects/chess/leela/android-bin/0.25borg/networks/weights', assetsPath + 'networks', 'weights')
+}
+
 tasks.withType(JavaCompile) {
-    t -> t.dependsOn copyToAssets
+    t -> t.dependsOn copyToAssets, copyLeelaAssets
 }

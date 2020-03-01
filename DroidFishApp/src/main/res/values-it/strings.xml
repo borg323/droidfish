@@ -802,4 +802,5 @@ Se l\'alimentazione è a batteria, è consigliabile modificare le impostazioni p
         <item>Annuncio vocale in tedesco</item>
         <item>Annuncio vocale in Spagnolo</item>
     </string-array>
+    <string name="leela_engine">Leela Chess Zero</string>
 </resources>

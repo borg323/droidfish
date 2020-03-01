@@ -802,4 +802,5 @@
         <item>德语语音</item>
         <item>西班牙语音</item>
     </string-array>
+    <string name="leela_engine">Leela Chess Zero</string>
 </resources>

@@ -806,4 +806,5 @@ DroidFish는 백그라운드에 실행 중인 상태에서 다음과 같이 설�
         <item>독일어 말하기</item>
         <item>스페인어 말하기</item>
     </string-array>
+    <string name="leela_engine">Leela Chess Zero</string>
 </resources>

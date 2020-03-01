@@ -67,6 +67,10 @@ public class ExternalEngine extends UCIEngineBase {
         return context.getFilesDir().getAbsolutePath() + "/internal_sf";
     }
 
+    protected String internalSWPath() {
+        return context.getFilesDir().getAbsolutePath() + "/internal_sw";
+    }
+
     /** @inheritDoc */
     @Override
     protected void startProcess() {
@@ -181,7 +185,7 @@ public class ExternalEngine extends UCIEngineBase {
             if (files == null)
                 return;
             for (File f : files) {
-                if (!f.getCanonicalPath().equals(exePath))
+                if (!f.getCanonicalPath().equals(exePath) && !f.isDirectory())
                     f.delete();
             }
             new File(context.getFilesDir(), "engine.exe").delete();
