@@ -8,4 +8,7 @@ install:
 build_script:
   - gradlew.bat assemble
 test_script:
-  - gradlew.bat test
+#  - gradlew.bat test
+artifacts:
+  - path: /DroidFishApp/build/outputs/apk/debug/*.apk/
+    name: DroidFishApp
