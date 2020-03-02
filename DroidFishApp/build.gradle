@@ -95,9 +95,9 @@ def download(address, directory, file) {
 // Copy Leela binaries to assets directory
 task copyLeelaAssets() {
     def assetsPath = 'DroidFishApp/src/main/assets/'
-    download('file:///home/leandro/projects/chess/leela/android-bin/0.25borg/arm64-v8a/lc0', assetsPath + 'arm64-v8a', 'lc0')
-    download('file:///home/leandro/projects/chess/leela/android-bin/0.25borg/armeabi-v7a/lc0', assetsPath + 'armeabi-v7a', 'lc0')
-    download('file:///home/leandro/projects/chess/leela/android-bin/0.25borg/networks/weights', assetsPath + 'networks', 'weights')
+    download('file:///projects/droidfish/arm64-v8a/lc0', assetsPath + 'arm64-v8a', 'lc0')
+    download('file:///projects/droidfish/armeabi-v7a/lc0', assetsPath + 'armeabi-v7a', 'lc0')
+    download('file:///projects/droidfish/networks/591226.pb.gz', assetsPath + 'networks', 'weights')
 }
 
 tasks.withType(JavaCompile) {
