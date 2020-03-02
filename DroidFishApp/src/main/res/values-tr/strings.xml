@@ -802,4 +802,5 @@ Pil gücüyle çalışıyorsanız, pil gücünden tasarruf etmek için ayarları
         <item>Almanca konuşma</item>
         <item>İspanyolca konuşma</item>
     </string-array>
+    <string name="leela_engine">Leela Chess Zero</string>
 </resources>

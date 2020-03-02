@@ -1341,9 +1341,13 @@ public class DroidFish extends Activity
             int idx = engine.lastIndexOf('/');
             eName = engine.substring(idx + 1);
         } else {
-            eName = getString("cuckoochess".equals(engine) ?
-                              R.string.cuckoochess_engine :
-                              R.string.stockfish_engine);
+            if ("cuckoochess".equals(engine))
+                eName = getString(R.string.cuckoochess_engine);
+            else if ("stockfish".equals(engine))
+                eName = getString(R.string.stockfish_engine);
+            else
+                eName = getString(R.string.leela_engine);
+
             boolean analysis = (ctrl != null) && ctrl.analysisMode();
             if ((strength < 1000) && !analysis)
                 eName = String.format(Locale.US, "%s: %d%%", eName, strength / 10);
@@ -2450,6 +2454,7 @@ public class DroidFish extends Activity
     private static boolean reservedEngineName(String name) {
         return "cuckoochess".equals(name) ||
                "stockfish".equals(name) ||
+               "leela".equals(name) ||
                name.endsWith(".ini");
     }
 
@@ -2457,6 +2462,7 @@ public class DroidFish extends Activity
         final ArrayList<String> items = new ArrayList<>();
         final ArrayList<String> ids = new ArrayList<>();
         ids.add("stockfish"); items.add(getString(R.string.stockfish_engine));
+        ids.add("leela"); items.add(getString(R.string.leela_engine));
         ids.add("cuckoochess"); items.add(getString(R.string.cuckoochess_engine));
 
         if (storageAvailable()) {

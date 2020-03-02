@@ -802,4 +802,5 @@
         <item>Німецька вимова</item>
         <item>Іспанська вимова</item>
     </string-array>
+    <string name="leela_engine">Leela Chess Zero</string>
 </resources>

@@ -33,15 +33,24 @@ public class EngineUtil {
         System.loadLibrary("nativeutil");
     }
 
-    /** Return file name of the internal stockfish executable. */
-    public static String internalStockFishName() {
+    static String getABI() {
         String abi = Build.CPU_ABI;
         if (!"x86".equals(abi) &&
-                !"x86_64".equals(abi) &&
-                !"arm64-v8a".equals(abi)) {
+            !"x86_64".equals(abi) &&
+            !"arm64-v8a".equals(abi)) {
             abi = "armeabi-v7a"; // Unknown ABI, assume 32-bit arm
         }
-        return abi + "/stockfish";
+        return abi;
+    }
+
+    /** Return file name of the internal stockfish executable. */
+    public static String internalStockFishName() {
+        return getABI() + "/stockfish";
+    }
+
+    /** Return file name of the internal Leela executable. */
+    public static String internalLeelaName() {
+        return getABI() + "/lc0";
     }
 
     /** Return true if file "engine" is a network engine. */

@@ -214,6 +214,7 @@ If you are running on battery power, it is recommended that you change settings 
     <string name="slash_not_allowed">Character &#47; not allowed</string>
     <string name="engine_error">Engine error</string>
     <string name="stockfish_engine">Stockfish</string>
+    <string name="leela_engine">Leela Chess Zero</string>
     <string name="cuckoochess_engine">CuckooChess</string>
     <string name="select_engine">Select Engine</string>
     <string name="engine_options">Engine Options</string>

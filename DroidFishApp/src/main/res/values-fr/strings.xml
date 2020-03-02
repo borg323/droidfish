@@ -802,4 +802,5 @@ Lorsque que vous êtes sur batterie, il est recommandé de changer les paramètr
         <item>German Speech</item>
         <item>Spanish Speech</item>
     </string-array>
+    <string name="leela_engine">Leela Chess Zero</string>
 </resources>

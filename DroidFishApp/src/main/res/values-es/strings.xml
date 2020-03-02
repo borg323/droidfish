@@ -802,4 +802,5 @@ Si está usted utilizando la batería, se recomienda que cambie los ajustes para
         <item>Texto hablado en alemán</item>
         <item>Texto hablado en español</item>
     </string-array>
+    <string name="leela_engine">Leela Chess Zero</string>
 </resources>

@@ -802,4 +802,5 @@ Um gegebenenfalls Strom zu sparen, ist es empfehlenswert, dass Sie diese Paramet
         <item>Zugansage auf Deutsch</item>
         <item>Zugansage auf Spanisch</item>
     </string-array>
+    <string name="leela_engine">Leela Chess Zero</string>
 </resources>

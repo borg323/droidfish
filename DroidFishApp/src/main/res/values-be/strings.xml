@@ -802,4 +802,5 @@
         <item>Па-нямецку</item>
         <item>Па-іспанску</item>
     </string-array>
+    <string name="leela_engine">Leela Chess Zero</string>
 </resources>
